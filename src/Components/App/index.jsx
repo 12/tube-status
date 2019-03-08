@@ -37,10 +37,8 @@ const App = () => {
             .then(setLines)
     };
 
-    /*
-        useEffect hook, to build an array of line statuses currently active.
-        This is run when the value of `lines` is updated.
-    */
+    // useEffect hook, to build an array of line statuses currently active.
+    // This is run when the value of `lines` is updated.
     useEffect(() => {
         let newArr = [];
 
@@ -54,23 +52,17 @@ const App = () => {
         setStatuses(newArr);
     }, [lines]) // Second arg, [lines] tells the hook to execute when the value of `lines` changes.
 
-    /*
-        useEffect hook, to fetch data from TfL API for London Underground line statuses.
-        Runs every 30 seconds
-    */
+    // useEffect hook, to fetch data from TfL API for London Underground line statuses.
+    // Runs every 30 seconds
+    // Passing no second arg causes this hook to run on every re-render, which is inefficient, so
+    // we pass setLines, as it is not recreated on re-render.
     useEffect(() => {
-        if (!lines.length) {    // Hacky way to force update on first load (as oppose to waiting 30s). Implementation could be better.
-            return updateData();
-        } else {
-            var dataBroker = setInterval(() => updateData(), 30000);
-
-            const cleanup = () => { // ran after hook
-                clearInterval(dataBroker);
-            };
-
-            return cleanup;
+        if (!lines.length) {
+            updateData();
         }
-    });
+
+        setInterval(() => updateData(), 30000);
+    }, [setLines]);
 
     return(
         <React.Fragment>
