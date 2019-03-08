@@ -29,39 +29,48 @@ const Wrapper = styled.div`
 `
 
 const App = () => {
-    const [lines, setLines] = useState([]);
-    const [statuses, setStatuses] = useState([]);
+    const [lines, setLines] = useState([]); // Used to get and set data returned from TfL API. See /helpers/dataBroker.jsx for fetch
+    const [statuses, setStatuses] = useState([]);   // Used to get and set the active statuses array
 
     const updateData = () => {
         dataBroker(endpoint)
             .then(setLines)
     };
 
+    /*
+        useEffect hook, to build an array of line statuses currently active.
+        This is run when the value of `lines` is updated.
+    */
     useEffect(() => {
         let newArr = [];
 
-        lines.map(({ lineStatuses: [{ statusSeverity }] }) => {
+        lines.map(({ lineStatuses: [{ statusSeverity }] }) => { // Destructuring an object=>array=>object
             if (newArr.indexOf(statusSeverity) < 0) {
+                // We want 'Good Service' at the bottom, and irregular services prominent.
                 statusSeverity === 10 ? newArr.push(statusSeverity) : newArr.unshift(statusSeverity);
             }
         })
 
         setStatuses(newArr);
-    }, [lines])
+    }, [lines]) // Second arg, [lines] tells the hook to execute when the value of `lines` changes.
 
+    /*
+        useEffect hook, to fetch data from TfL API for London Underground line statuses.
+        Runs every 30 seconds
+    */
     useEffect(() => {
-        if (!lines.length) {
+        if (!lines.length) {    // Hacky way to force update on first load (as oppose to waiting 30s). Implementation could be better.
             return updateData();
         } else {
             var dataBroker = setInterval(() => updateData(), 30000);
 
-            const cleanup = () => {
+            const cleanup = () => { // ran after hook
                 clearInterval(dataBroker);
             };
 
             return cleanup;
         }
-    }, [lines]);
+    });
 
     return(
         <React.Fragment>
