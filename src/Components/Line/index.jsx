@@ -21,13 +21,23 @@ const Heading = styled.div`
             return lineColours[convertedName.toLowerCase()];
         }
     };
+
+    @media only screen and (max-width: 768px) {
+        span {
+            font-size: 4vw;
+        }
+    }
 `
 
 const Title = styled.div`
     font-weight: 600;
-    font-size: 18px;
     margin-left: 15px;
+    font-size: 18px;
     display:inline-block;
+
+    @media only screen and (max-width: 768px) {
+        font-size: 4vw
+    }
 `
 
 const Details = styled.div`

@@ -7,6 +7,10 @@ const ContainerStyle = styled.div`
         flex-direction: column;
         flex-wrap: nowrap;
         width: 60%;
+
+        @media only screen and (max-width: 768px) {
+            width: 100%;
+        }
     `
 
 const Container = ({ status, children }) => {

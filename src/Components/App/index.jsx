@@ -6,7 +6,7 @@ import dataBroker from '../../Helpers/dataBroker';
 
 const endpoint = 'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
  
-const PageStyle = createGlobalStyle`
+const Global = createGlobalStyle`
     @font-face {
         font-family: tfl;
         font-display: auto;
@@ -24,54 +24,48 @@ const PageStyle = createGlobalStyle`
 
 const Wrapper = styled.div`
     display: flex;
-    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    overflow-x: hidden;
-    width: 100%;
 `
 
 const App = () => {
-    const [lines, setLines] = useState({});
+    const [lines, setLines] = useState([]);
     const [statuses, setStatuses] = useState([]);
 
     const updateData = () => {
         dataBroker(endpoint)
             .then(setLines)
-            .catch(console.log);
     };
 
-    const buildModes = () => {
-        if (!lines.length) {
-            return;
-        }
+    useEffect(() => {
+        let newArr = [];
 
         lines.map(({ lineStatuses: [{ statusSeverity }] }) => {
-            if (statuses.indexOf(statusSeverity) < 0) {
-                if (statusSeverity === 10) {
-                    setStatuses([...statuses, statusSeverity]);
-                } else {
-                    setStatuses([statusSeverity, ...statuses]);
-                }
+            if (newArr.indexOf(statusSeverity) < 0) {
+                statusSeverity === 10 ? newArr.push(statusSeverity) : newArr.unshift(statusSeverity);
             }
         })
-    }
+
+        setStatuses(newArr);
+    }, [lines])
 
     useEffect(() => {
-        var dataBroker = setInterval(() => updateData(), 5000);
+        if (!lines.length) {
+            return updateData();
+        } else {
+            var dataBroker = setInterval(() => updateData(), 30000);
 
-        const cleanup = () => {
-            buildModes();
-            clearInterval(dataBroker);
-        };
+            const cleanup = () => {
+                clearInterval(dataBroker);
+            };
 
-        return cleanup;
-    });
+            return cleanup;
+        }
+    }, [lines]);
 
     return(
         <React.Fragment>
-            <PageStyle></PageStyle>
+            <Global></Global>
             <Wrapper>
                 {
                     statuses.map((status) => {
@@ -80,7 +74,7 @@ const App = () => {
                                 {
                                     lines.filter(line => line.lineStatuses[0].statusSeverity === status)
                                         .map(line => {
-                                            return <Line line={line} />
+                                            return <Line key={line.name} line={line} />
                                         })
                                 }
                             </Container>
