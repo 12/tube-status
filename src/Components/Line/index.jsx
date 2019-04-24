@@ -34,6 +34,7 @@ const Title = styled.div`
     margin-left: 15px;
     font-size: 18px;
     display:inline-block;
+    font-family: 'tfl', sans-serif;
 
     @media only screen and (max-width: 768px) {
         font-size: 4vw
@@ -45,10 +46,27 @@ const Details = styled.div`
     padding: 15px 10px;
 `
 
+const article = (status) => {
+    switch(status) {
+        default:
+            return 'has';
+        case 0:
+        case 4:
+        case 5:
+        case 7:
+            return 'has a';
+        case 1:
+        case 11:
+        case 16:
+            return 'is';
+        case 20:
+            return '-';
+    };
+}
+
 const Line = ({ 
     line: {
         name,
-        modified,
         lineStatuses: [
             {
                 statusSeverity,
@@ -63,7 +81,7 @@ const Line = ({
             <Heading key={name} name={name}>
                 <Roundel />
                 <span>
-                    <Title>{name}</Title> has {statusSeverityDescription}
+                    <Title>{name}</Title> {article(statusSeverity)} {statusSeverityDescription.toLowerCase()}
                 </span>
             </Heading>
             {

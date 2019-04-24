@@ -16,7 +16,19 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
-            }
+            },
+            {
+                test: /\.woff2$/,
+                use: {
+                    loader: "url-loader",
+                    options: {
+                        limit: 50000,
+                        mimetype: "application/font-woff",
+                        name: "./assets/fonts/[name].[ext]",
+                        publicPath: "../",
+                    },
+                },
+            },
         ]
     },
     plugins: [

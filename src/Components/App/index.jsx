@@ -7,10 +7,12 @@ import dataBroker from '../../Helpers/dataBroker';
 const endpoint = 'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
  
 const Global = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css?family=Poppins');
+
     @font-face {
         font-family: tfl;
         font-display: auto;
-        src: url('/Johnston100-Regular.woff2');
+        src: url('assets/fonts/underground.woff2');
     }
 
     body {
@@ -18,7 +20,7 @@ const Global = createGlobalStyle`
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         font-feature-settings: none;
-        font-family:'tfl', PT-Sans, sans-serif;
+        font-family: 'Poppins', sans-serif;
     }
 `
 
