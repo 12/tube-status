@@ -3,17 +3,17 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
-    mode: 'production',
-    optimization: {
-        minimizer: [
-            new UglifyJsPlugin({
-                test: /\.js(\?.*)?$/i,
-                uglifyOptions: {
-                    output: {
-                        comments: false
-                    }
-                }
-            })
-        ],
-    },
+  mode: 'production',
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        test: /\.(js|jsx)$/,
+        uglifyOptions: {
+          output: {
+            comments: false
+          }
+        }
+      })
+    ]
+  }
 });
