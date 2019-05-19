@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Line from '../../Components/Line';
 import dataBroker from '../../Helpers/dataBroker';
 import sortData from '../../Helpers/sortData';
@@ -24,14 +24,14 @@ const App = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Global />
       <Wrapper>
         {lines.map(line => (
           <Line key={line.name} line={line} />
         ))}
       </Wrapper>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
