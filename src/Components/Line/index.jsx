@@ -1,48 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import Roundel from '../Roundel';
-import lineColours from '../../Helpers/lineColours';
-
-const LineStyle = styled.div`
-  width: 100%;
-`;
-const Heading = styled.div`
-  padding: 10px;
-  color: white;
-  height: 35px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  background: ${props => {
-    const convertedName = props.name.split(' ')[0];
-
-    return lineColours[convertedName.toLowerCase()];
-  }};
-
-  @media only screen and (max-width: 768px) {
-    span {
-      font-size: 4vw;
-    }
-  }
-`;
-
-const Title = styled.div`
-  font-weight: 600;
-  margin-left: 15px;
-  font-size: 18px;
-  display: inline-block;
-
-  @media only screen and (max-width: 768px) {
-    font-size: 4vw;
-  }
-`;
-
-const Details = styled.div`
-  background: #fefefe;
-  padding: 15px 10px;
-`;
+import { LineStyle, Heading, Title, Details } from '../../Helpers/styles';
 
 const article = status => {
   switch (status) {
