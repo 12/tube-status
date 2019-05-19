@@ -1,0 +1,13 @@
+export const SPECIAL_SERVICE = 0;
+export const CLOSED = 1;
+export const SUSPENDED = 2;
+export const PART_SUSPENDED = 3;
+export const PLANNED_CLOSURE = 4;
+export const PART_CLOSURE = 5;
+export const SEVERE_DELAYS = 6;
+export const REDUCED_SERVICE = 7;
+export const BUS_SERVICE = 8;
+export const MINOR_DELAYS = 9;
+export const GOOD_SERVICE = 10;
+export const PART_CLOSED = 11;
+export const SERVICE_CLOSED = 20;
