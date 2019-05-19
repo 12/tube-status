@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Roundel from '../Roundel';
-import { LineStyle, Heading, Title, Details } from '../../Helpers/styles';
+import { LineStyled, HeadingStyled, TitleStyled, DetailsStyled } from '../../Helpers/styles';
 import {
   SPECIAL_SERVICE,
   CLOSED,
@@ -38,16 +38,16 @@ const Line = ({ line }) => {
   const description = ` ${article(statusSeverity)} ${statusSeverityDescription.toLowerCase()}`;
 
   return (
-    <LineStyle key={name} name={name}>
-      <Heading key={name} name={name}>
+    <LineStyled key={name} name={name}>
+      <HeadingStyled key={name} name={name}>
         <Roundel />
         <span>
-          <Title>{name}</Title>
+          <TitleStyled>{name}</TitleStyled>
           {description}
         </span>
-      </Heading>
-      {statusSeverity !== 10 ? <Details>{reason}</Details> : ''}
-    </LineStyle>
+      </HeadingStyled>
+      {statusSeverity !== 10 ? <DetailsStyled>{reason}</DetailsStyled> : ''}
+    </LineStyled>
   );
 };
 

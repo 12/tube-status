@@ -28,7 +28,7 @@ const lineBackgroundColour = ({ name }) => {
   return LINE_COLOURS[convertedName.toLowerCase()] || WHITE;
 };
 
-export const Global = createGlobalStyle`
+export const GlobalStyled = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Poppins');
 
   body {
@@ -37,10 +37,17 @@ export const Global = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: none;
     font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+    @media only screen and (max-width: ${DEVICE_BREAKPOINT_PX}px) {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+    }
   }
 `;
 
-export const Wrapper = styled.div`
+export const WrapperStyled = styled.div`
   margin: 0 auto;
   width: 60%;
   display: flex;
@@ -52,10 +59,10 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const LineStyle = styled.div`
+export const LineStyled = styled.div`
   width: 100%;
 `;
-export const Heading = styled.div`
+export const HeadingStyled = styled.div`
   padding: 10px;
   color: ${WHITE};
   height: 35px;
@@ -67,19 +74,17 @@ export const Heading = styled.div`
   background: ${props => lineBackgroundColour(props)};
 
   @media only screen and (max-width: ${DEVICE_BREAKPOINT_PX}px) {
-    span {
-      font-size: 0.875rem;
-    }
+    font-size: 0.875rem;
   }
 `;
 
-export const Title = styled.div`
+export const TitleStyled = styled.div`
   font-weight: 600;
   margin-left: 15px;
   display: inline-block;
 `;
 
-export const Details = styled.div`
+export const DetailsStyled = styled.div`
   background: ${WHITE};
   padding: 15px 10px;
 `;

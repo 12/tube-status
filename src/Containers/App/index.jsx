@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import Line from '../../Components/Line';
 import dataBroker from '../../Helpers/dataBroker';
 import sortData from '../../Helpers/sortData';
-import { Global, Wrapper } from '../../Helpers/styles';
+import { GlobalStyled, WrapperStyled } from '../../Helpers/styles';
 
 const endpoint =
   'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
@@ -25,12 +25,12 @@ const App = () => {
 
   return (
     <Fragment>
-      <Global />
-      <Wrapper>
+      <GlobalStyled />
+      <WrapperStyled>
         {lines.map(line => (
           <Line key={line.name} line={line} />
         ))}
-      </Wrapper>
+      </WrapperStyled>
     </Fragment>
   );
 };
