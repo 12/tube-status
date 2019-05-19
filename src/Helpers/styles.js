@@ -63,11 +63,12 @@ export const Heading = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  font-size: 1rem;
   background: ${props => lineBackgroundColour(props)};
 
   @media only screen and (max-width: ${DEVICE_BREAKPOINT_PX}px) {
     span {
-      font-size: 4vw;
+      font-size: 0.875rem;
     }
   }
 `;
@@ -75,12 +76,7 @@ export const Heading = styled.div`
 export const Title = styled.div`
   font-weight: 600;
   margin-left: 15px;
-  font-size: 18px;
   display: inline-block;
-
-  @media only screen and (max-width: ${DEVICE_BREAKPOINT_PX}px) {
-    font-size: 4vw;
-  }
 `;
 
 export const Details = styled.div`
