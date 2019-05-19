@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Line from '../Line';
+import Line from '../../Components/Line';
 import dataBroker from '../../Helpers/dataBroker';
 import sortData from '../../Helpers/sortData';
 import { Global, Wrapper } from '../../Helpers/styles';
