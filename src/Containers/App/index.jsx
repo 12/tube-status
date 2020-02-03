@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import Line from '../../Components/Line';
 import dataBroker from '../../Helpers/dataBroker';
 import sortData from '../../Helpers/sortData';
-import { GlobalStyled, WrapperStyled } from '../../Helpers/styles';
+import { GlobalStyled, WrapperStyled, GithubLinkStyled } from '../../Helpers/styles';
 
 const endpoint =
   'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
@@ -31,6 +31,11 @@ const App = () => {
           <Line key={line.name} line={line} />
         ))}
       </WrapperStyled>
+      {!!lines.length && (
+        <GithubLinkStyled href="https://github.com/12/tube-status">
+          Open source on Github!
+        </GithubLinkStyled>
+      )}
     </Fragment>
   );
 };

@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Roundel from '../Roundel';
-import { LineStyled, HeadingStyled, TitleStyled, DetailsStyled } from '../../Helpers/styles';
+import {
+  LineStyled,
+  HeadingStyled,
+  TitleStyled,
+  DetailsStyled,
+  LineNameStyled
+} from '../../Helpers/styles';
 import {
   SPECIAL_SERVICE,
   CLOSED,
@@ -41,10 +47,10 @@ const Line = ({ line }) => {
     <LineStyled key={name} name={name}>
       <HeadingStyled key={name} name={name}>
         <Roundel />
-        <span>
-          <TitleStyled>{name}</TitleStyled>
+        <TitleStyled>
+          <LineNameStyled>{name}</LineNameStyled>
           {description}
-        </span>
+        </TitleStyled>
       </HeadingStyled>
       {statusSeverity !== 10 ? <DetailsStyled>{reason}</DetailsStyled> : ''}
     </LineStyled>

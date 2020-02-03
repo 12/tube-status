@@ -65,7 +65,6 @@ export const LineStyled = styled.div`
 export const HeadingStyled = styled.div`
   padding: 10px;
   color: ${WHITE};
-  height: 35px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -78,10 +77,13 @@ export const HeadingStyled = styled.div`
   }
 `;
 
-export const TitleStyled = styled.div`
+export const LineNameStyled = styled.div`
   font-weight: 600;
-  margin-left: 15px;
   display: inline-block;
+`;
+
+export const TitleStyled = styled.span`
+  margin-left: 50px;
 `;
 
 export const DetailsStyled = styled.div`
@@ -90,6 +92,8 @@ export const DetailsStyled = styled.div`
 `;
 
 export const RoundelStyled = styled.svg`
+  position: absolute;
+
   circle {
     fill: none;
     stroke: ${WHITE};
@@ -101,4 +105,12 @@ export const RoundelStyled = styled.svg`
     stroke: ${WHITE};
     stroke-width: 77;
   }
+`;
+
+export const GithubLinkStyled = styled.a`
+  color: ${WHITE};
+  padding: 10px 0;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 `;
