@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
-    "deploy": "npm run build&&gh-pages -d dist",
+    "deploy": "yarn build&&gh-pages -d dist",
     "start": "webpack-dev-server --config webpack.dev.js",
     "test": "eslint --ext .js,jsx,json ./src"
   },
