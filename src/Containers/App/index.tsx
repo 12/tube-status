@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Global } from '@emotion/core';
 import useFetch from '../../Helpers/useFetch';
 import Line, { LineProps } from '../../Components/Line/index';
-import sortData from '../../Helpers/sortData';
+import sortData from '../../Helpers/sortData'; // @TODO: Re-enable sorting of lines by status
 import { globalStyles, WrapperStyled, GithubLinkStyled } from '../../Helpers/styles';
 
 const endpoint =
@@ -14,8 +14,6 @@ type ResponseType = {
 }
 
 const App = () => {
-  const [lines, setLines] = useState([]);
-
   const res: ResponseType = useFetch(endpoint);
 
   if (!res.response) {
