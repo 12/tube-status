@@ -11,9 +11,7 @@ const endpoint =
 const App = () => {
   const [lines, setLines] = useState([]);
   const updateData = () => {
-    dataBroker(endpoint)
-      .then(sortData)
-      .then(setLines);
+    dataBroker(endpoint).then(sortData).then(setLines);
   };
 
   useEffect(() => {
@@ -28,9 +26,7 @@ const App = () => {
     <>
       <Global styles={globalStyles} />
       <WrapperStyled>
-        {lines && lines.map(line => (
-          <Line key={line.name} line={line} />
-        ))}
+        {lines && lines.map((line) => <Line key={line.name} line={line} />)}
       </WrapperStyled>
       {!!lines.length && (
         <GithubLinkStyled href="https://github.com/12/tube-status">

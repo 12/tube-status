@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
 
   return {
     entry: {
-      main: './src/index.js',
+      main: './src/index',
     },
     output: {
       path: path.join(__dirname, '/dist'),
@@ -27,7 +27,7 @@ module.exports = (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.(js|jsx)$/,
+          test: /\.(ts|js)x?$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
@@ -43,7 +43,7 @@ module.exports = (env, argv) => {
       new CopyPlugin({ patterns: [ { from: 'assets', to: '.' } ]})
     ],
     resolve: {
-      extensions: ['.js', '.jsx'],
+      extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
   };
 };

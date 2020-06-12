@@ -1,9 +1,9 @@
 export default function sortLines(data) {
   const sortedLines = [];
 
-  data.forEach(line => {
+  data.forEach((line) => {
     const {
-      lineStatuses: [{ statusSeverity }]
+      lineStatuses: [{ statusSeverity }],
     } = line;
 
     if (sortedLines.indexOf(statusSeverity) < 0) {
