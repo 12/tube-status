@@ -8,10 +8,10 @@ import { globalStyles, WrapperStyled, GithubLinkStyled } from '../../Helpers/sty
 const endpoint =
   'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
 
-type ResponseType = {
-  response: Array<object> | null;
+interface ResponseType {
+  response: Array<LineProps> | null;
   error: object | null;
-};
+}
 
 const App = () => {
   const res: ResponseType = useFetch(endpoint);
@@ -24,7 +24,10 @@ const App = () => {
     <>
       <Global styles={globalStyles} />
       <WrapperStyled>
-        {res.response && res.response.map((line: LineProps) => <Line key={line.name} {...line} />)}
+        {res.response &&
+          res.response.map(({ name, lineStatuses }: LineProps) => (
+            <Line key={name} name={name} lineStatuses={lineStatuses} />
+          ))}
       </WrapperStyled>
       {!!res.response && (
         <GithubLinkStyled href="https://github.com/12/tube-status">

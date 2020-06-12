@@ -28,8 +28,9 @@ const article = (status: number) => {
   }
 };
 
-export type LineProps = {
+export interface LineProps {
   name: string;
+  key: string;
   lineStatuses: [
     {
       statusSeverity: number;
@@ -37,7 +38,7 @@ export type LineProps = {
       reason: string;
     }
   ];
-};
+}
 
 const Line: React.FunctionComponent<LineProps> = (line) => {
   const { name, lineStatuses } = line;
