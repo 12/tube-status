@@ -8,6 +8,7 @@ module.exports = (env, argv) => {
   const isDevelopment = argv.mode === 'development';
 
   return {
+    target: 'web',
     entry: {
       main: './src/index',
     },

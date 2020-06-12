@@ -9,7 +9,7 @@ import {
 } from '../../Helpers/styles';
 import MODES from '../../Helpers/modes';
 
-const article = (status: Number) => {
+const article = (status: number) => {
   switch (status) {
     default:
       return 'has';

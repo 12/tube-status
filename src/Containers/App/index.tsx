@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Global } from '@emotion/core';
+import useFetch from '../../Helpers/useFetch';
 import Line, { LineProps } from '../../Components/Line/index';
-import dataBroker from '../../Helpers/dataBroker';
 import sortData from '../../Helpers/sortData';
 import { globalStyles, WrapperStyled, GithubLinkStyled } from '../../Helpers/styles';
 
 const endpoint =
   'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
 
+type ResponseType = {
+  response: Array<object>,
+  error: object
+}
+
 const App = () => {
   const [lines, setLines] = useState([]);
-  const updateData = () => {
-    dataBroker(endpoint).then(sortData).then(setLines);
-  };
 
-  useEffect(() => {
-    if (!lines.length) {
-      updateData();
-    }
+  const res: ResponseType = useFetch(endpoint);
 
-    setInterval(() => updateData(), 30000);
-  }, []);
+  if (!res.response) {
+    return <h1>Loading</h1>
+  }
 
   return (
     <>
       <Global styles={globalStyles} />
       <WrapperStyled>
-        {lines && lines.map((line: LineProps) => <Line key={line.name} {...line} />)}
+        {res.response && res.response.map((line: LineProps) => <Line key={line.name} {...line} />)}
       </WrapperStyled>
-      {!!lines.length && (
+      {!!res.response && (
         <GithubLinkStyled href="https://github.com/12/tube-status">
           Open source on Github!
         </GithubLinkStyled>
