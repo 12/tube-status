@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Global } from '@emotion/core';
-import Line from '../../Components/Line/index';
+import Line, { LineProps } from '../../Components/Line/index';
 import dataBroker from '../../Helpers/dataBroker';
 import sortData from '../../Helpers/sortData';
 import { globalStyles, WrapperStyled, GithubLinkStyled } from '../../Helpers/styles';
@@ -26,7 +26,7 @@ const App = () => {
     <>
       <Global styles={globalStyles} />
       <WrapperStyled>
-        {lines && lines.map((line) => <Line key={line.name} {...line} />)}
+        {lines && lines.map((line: LineProps) => <Line key={line.name} {...line} />)}
       </WrapperStyled>
       {!!lines.length && (
         <GithubLinkStyled href="https://github.com/12/tube-status">

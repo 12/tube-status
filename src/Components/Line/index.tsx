@@ -28,22 +28,24 @@ const article = (status: Number) => {
   }
 };
 
-type Line = {
-  name: String,
-  lineStatuses: [{
-    statusSeverity: Number,
-    statusSeverityDescription: String,
-    reason: String
-  }]
-}
+export type LineProps = {
+  name: string;
+  lineStatuses: [
+    {
+      statusSeverity: number;
+      statusSeverityDescription: string;
+      reason: string;
+    }
+  ];
+};
 
-const Line: React.FunctionComponent<Line> = (line) => {
+const Line: React.FunctionComponent<LineProps> = (line) => {
   const { name, lineStatuses } = line;
   const [{ statusSeverity, statusSeverityDescription, reason }] = lineStatuses;
   const description = ` ${article(statusSeverity)} ${statusSeverityDescription.toLowerCase()}`;
 
   return (
-    <LineStyled key={name} name={name}>
+    <LineStyled key={name}>
       <HeadingStyled key={name} name={name}>
         <Roundel />
         <TitleStyled>

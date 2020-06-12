@@ -1,5 +1,21 @@
 import React from 'react';
-import { RoundelStyled } from '../../Helpers/styles';
+import styled from '@emotion/styled';
+
+const RoundelStyled = styled.svg`
+  position: absolute;
+
+  circle {
+    fill: none;
+    stroke: #fefefe;
+    stroke-width: 70;
+  }
+
+  path {
+    fill: none;
+    stroke: #fefefe;
+    stroke-width: 77;
+  }
+`;
 
 const Roundel = () => {
   return (
