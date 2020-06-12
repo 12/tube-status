@@ -9,8 +9,8 @@ const endpoint =
   'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
 
 type ResponseType = {
-  response: Array<object>;
-  error: object;
+  response: Array<object> | null;
+  error: object | null;
 };
 
 const App = () => {
