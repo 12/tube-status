@@ -1,11 +1,21 @@
 {
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react",
-        "@babel/preset-typescript"
-    ],
     "env": {
         "production": {
+            "presets": [
+                [
+                    "@babel/preset-env",
+                    {
+                        "modules": false,
+                        "targets": {
+                            "browsers": [
+                                "last 2 chrome versions"
+                            ]
+                        }
+                    }
+                ],
+                "@babel/preset-react",
+                "@babel/preset-typescript"
+            ],
             "plugins": [
                 "emotion",
                 [
@@ -17,14 +27,24 @@
             ]
         },
         "development": {
-            "plugins": [
+            "presets": [
                 [
-                    "emotion",
+                    "@babel/preset-env",
                     {
-                        "sourceMap": true
+                        "modules": false,
+                        "targets": {
+                            "browsers": [
+                                "last 2 chrome versions"
+                            ]
+                        }
                     }
                 ],
+                "@babel/preset-react",
+                "@babel/preset-typescript"
+            ],
+            "plugins": [
                 "react-hot-loader/babel",
+                "emotion",
                 [
                     "@babel/plugin-transform-runtime",
                     {

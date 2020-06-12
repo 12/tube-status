@@ -20,7 +20,7 @@ const LINE_COLOURS = {
   london: '#FF6600',
   emirates: '#E21836',
   tram: '#66CC00',
-  tfl: '#0007ab'
+  tfl: '#0007ab',
 };
 
 export const globalStyles = css`
@@ -40,10 +40,18 @@ export const globalStyles = css`
   }
 `;
 
-const lineBackgroundColour = ({ name }) => {
-  const convertedName = name.split(' ')[0];
+type HeadingProps = {
+  name: string;
+};
 
-  return LINE_COLOURS[convertedName.toLowerCase()] || WHITE;
+function hasKey<O>(obj: O, key: keyof any): key is keyof O {
+  return key in obj;
+}
+
+const lineBackgroundColour = ({ name }: HeadingProps) => {
+  const convertedName = name.split(' ')[0].toLowerCase();
+
+  return hasKey(LINE_COLOURS, convertedName) ? LINE_COLOURS[convertedName] : WHITE;
 };
 
 export const WrapperStyled = styled.div`
@@ -61,6 +69,7 @@ export const WrapperStyled = styled.div`
 export const LineStyled = styled.div`
   width: 100%;
 `;
+
 export const HeadingStyled = styled.div`
   padding: 10px;
   color: ${WHITE};
@@ -69,7 +78,7 @@ export const HeadingStyled = styled.div`
   flex-wrap: wrap;
   align-items: center;
   font-size: 1rem;
-  background: ${props => lineBackgroundColour(props)};
+  background: ${(props: HeadingProps) => lineBackgroundColour(props)};
 
   @media only screen and (max-width: ${DEVICE_BREAKPOINT_PX}px) {
     font-size: 0.875rem;
@@ -88,22 +97,6 @@ export const TitleStyled = styled.span`
 export const DetailsStyled = styled.div`
   background: ${WHITE};
   padding: 15px 10px;
-`;
-
-export const RoundelStyled = styled.svg`
-  position: absolute;
-
-  circle {
-    fill: none;
-    stroke: ${WHITE};
-    stroke-width: 70;
-  }
-
-  path {
-    fill: none;
-    stroke: ${WHITE};
-    stroke-width: 77;
-  }
 `;
 
 export const GithubLinkStyled = styled.a`

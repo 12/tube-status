@@ -1,50 +1,52 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Roundel from '../Roundel';
 import {
   LineStyled,
   HeadingStyled,
   TitleStyled,
   DetailsStyled,
-  LineNameStyled
+  LineNameStyled,
 } from '../../Helpers/styles';
-import {
-  SPECIAL_SERVICE,
-  CLOSED,
-  PART_SUSPENDED,
-  PLANNED_CLOSURE,
-  PART_CLOSURE,
-  REDUCED_SERVICE,
-  PART_CLOSED,
-  SERVICE_CLOSED
-} from '../../Helpers/modes';
+import MODES from '../../Helpers/modes';
 
-const article = status => {
+const article = (status: number) => {
   switch (status) {
     default:
       return 'has';
-    case SPECIAL_SERVICE:
-    case PLANNED_CLOSURE:
-    case PART_CLOSURE:
-    case REDUCED_SERVICE:
+    case MODES.SPECIAL_SERVICE:
+    case MODES.PLANNED_CLOSURE:
+    case MODES.PART_CLOSURE:
+    case MODES.REDUCED_SERVICE:
       return 'has a';
-    case CLOSED:
-    case PART_SUSPENDED:
-    case PART_CLOSED:
-    case 16:
+    case MODES.CLOSED:
+    case MODES.PART_SUSPENDED:
+    case MODES.PART_CLOSED:
+    case MODES.NOT_RUNNING:
       return 'is';
-    case SERVICE_CLOSED:
+    case MODES.SERVICE_CLOSED:
       return '-';
   }
 };
 
-const Line = ({ line }) => {
+export interface LineProps {
+  name: string;
+  key: string;
+  lineStatuses: [
+    {
+      statusSeverity: number;
+      statusSeverityDescription: string;
+      reason: string;
+    }
+  ];
+}
+
+const Line: React.FunctionComponent<LineProps> = (line) => {
   const { name, lineStatuses } = line;
   const [{ statusSeverity, statusSeverityDescription, reason }] = lineStatuses;
   const description = ` ${article(statusSeverity)} ${statusSeverityDescription.toLowerCase()}`;
 
   return (
-    <LineStyled key={name} name={name}>
+    <LineStyled key={name}>
       <HeadingStyled key={name} name={name}>
         <Roundel />
         <TitleStyled>
@@ -55,10 +57,6 @@ const Line = ({ line }) => {
       {statusSeverity !== 10 ? <DetailsStyled>{reason}</DetailsStyled> : ''}
     </LineStyled>
   );
-};
-
-Line.propTypes = {
-  line: PropTypes.shape().isRequired
 };
 
 export default Line;
