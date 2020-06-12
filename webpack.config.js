@@ -40,7 +40,7 @@ module.exports = (env, argv) => {
       new HtmlWebpackPlugin({
         template: './index.html',
       }),
-      new CopyPlugin({ patterns: [ { from: 'assets', to: 'dist' } ]})
+      new CopyPlugin({ patterns: [ { from: 'assets', to: '.' } ]})
     ],
     resolve: {
       extensions: ['.js', '.jsx'],

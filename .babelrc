@@ -1,15 +1,41 @@
 {
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
-    ],
-    "plugins": [
-        "react-hot-loader/babel",
-        [
-            "@babel/plugin-transform-runtime",
-            {
-                "regenerator": true
-            }
-        ]
-    ]
+    "env": {
+        "production": {
+            "presets": [
+                "@babel/preset-env",
+                "@babel/preset-react"
+            ],
+            "plugins": [
+                "emotion",
+                "react-hot-loader/babel",
+                [
+                    "@babel/plugin-transform-runtime",
+                    {
+                        "regenerator": true
+                    }
+                ]
+            ]
+        },
+        "development": {
+            "presets": [
+                "@babel/preset-env",
+                "@babel/preset-react"
+            ],
+            "plugins": [
+                [
+                    "emotion",
+                    {
+                        "sourceMap": true
+                    }
+                ],
+                "react-hot-loader/babel",
+                [
+                    "@babel/plugin-transform-runtime",
+                    {
+                        "regenerator": true
+                    }
+                ]
+            ]
+        }
+    }
 }

@@ -1,4 +1,5 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
 const PAGE_COLOUR = '#273c75';
 const WHITE = '#fefefe';
@@ -22,15 +23,7 @@ const LINE_COLOURS = {
   tfl: '#0007ab'
 };
 
-const lineBackgroundColour = ({ name }) => {
-  const convertedName = name.split(' ')[0];
-
-  return LINE_COLOURS[convertedName.toLowerCase()] || WHITE;
-};
-
-export const GlobalStyled = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Poppins');
-
+export const globalStyles = css`
   body {
     background: ${PAGE_COLOUR};
     -webkit-font-smoothing: antialiased;
@@ -46,6 +39,12 @@ export const GlobalStyled = createGlobalStyle`
     }
   }
 `;
+
+const lineBackgroundColour = ({ name }) => {
+  const convertedName = name.split(' ')[0];
+
+  return LINE_COLOURS[convertedName.toLowerCase()] || WHITE;
+};
 
 export const WrapperStyled = styled.div`
   margin: 0 auto;
