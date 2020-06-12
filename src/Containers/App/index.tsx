@@ -9,15 +9,15 @@ const endpoint =
   'https://api.tfl.gov.uk/line/mode/tube%2Cdlr%2Coverground%2Ctflrail%2Ctram%2Ccable-car/status';
 
 type ResponseType = {
-  response: Array<object>,
-  error: object
-}
+  response: Array<object>;
+  error: object;
+};
 
 const App = () => {
   const res: ResponseType = useFetch(endpoint);
 
   if (!res.response) {
-    return <h1>Loading</h1>
+    return <h1>Loading</h1>;
   }
 
   return (

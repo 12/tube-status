@@ -5,7 +5,7 @@ import {
   HeadingStyled,
   TitleStyled,
   DetailsStyled,
-  LineNameStyled
+  LineNameStyled,
 } from '../../Helpers/styles';
 import MODES from '../../Helpers/modes';
 

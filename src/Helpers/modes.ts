@@ -12,7 +12,7 @@ enum MODES {
   GOOD_SERVICE = 10,
   PART_CLOSED = 11,
   NOT_RUNNING = 16,
-  SERVICE_CLOSED = 20
+  SERVICE_CLOSED = 20,
 }
 
 export default MODES;

@@ -20,7 +20,7 @@ const LINE_COLOURS = {
   london: '#FF6600',
   emirates: '#E21836',
   tram: '#66CC00',
-  tfl: '#0007ab'
+  tfl: '#0007ab',
 };
 
 export const globalStyles = css`
@@ -41,11 +41,11 @@ export const globalStyles = css`
 `;
 
 type HeadingProps = {
-  name: string
-}
+  name: string;
+};
 
 function hasKey<O>(obj: O, key: keyof any): key is keyof O {
-  return key in obj
+  return key in obj;
 }
 
 const lineBackgroundColour = ({ name }: HeadingProps) => {
@@ -54,7 +54,7 @@ const lineBackgroundColour = ({ name }: HeadingProps) => {
   return hasKey(LINE_COLOURS, convertedName) ? LINE_COLOURS[convertedName] : WHITE;
 };
 
-export const WrapperStyled = styled.div` 
+export const WrapperStyled = styled.div`
   margin: 0 auto;
   width: 60%;
   display: flex;
