@@ -31,7 +31,7 @@ const App = () => {
         {lines && lines.map(line => (
           <Line key={line.name} line={line} />
         ))}
-      </WrapperStyled> */}
+      </WrapperStyled>
       {!!lines.length && (
         <GithubLinkStyled href="https://github.com/12/tube-status">
           Open source on Github!
